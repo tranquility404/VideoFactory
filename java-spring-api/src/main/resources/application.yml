@@ -1,0 +1,81 @@
+server:
+  port: 8000
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{Request-Id}] - %msg%n"
+
+repository:
+  root: ${REPOSITORY_ROOT:..}
+
+tools:
+  python-command: ${PYTHON_COMMAND:python}
+  default-timeout-seconds: ${TOOLS_TIMEOUT_SECONDS:86400}
+  node-command: ${NODE_COMMAND:node}
+  ffmpeg-command: ${FFMPEG_COMMAND:ffmpeg}
+  ffprobe-command: ${FFPROBE_COMMAND:ffprobe}
+  chromium-executable: ${PLAYWRIGHT_CHROMIUM_EXECUTABLE:}
+  remotion-script: ${REMOTION_SCRIPT:remotion/scripts/render-api.mjs}
+  eleven-labs-api-key: ${ELEVENLABS_API_KEY}
+  eleven-labs-base-url: ${ELEVENLABS_BASE_URL:https://api.elevenlabs.io}
+  fal-api-key: ${FAL_KEY:}
+  fal-queue-url: ${FAL_QUEUE_URL:https://queue.fal.run}
+  fal-storage-url: ${FAL_STORAGE_URL:https://rest.fal.ai/storage/upload/initiate?storage_type=fal-cdn-v3}
+  cloudflare-api-url: ${CLOUDFLARE_IMAGE_API_URL}
+  cloudflare-api-key: ${CLOUDFLARE_API_KEY}
+  default-voice: ${ELEVENLABS_DEFAULT_VOICE:TX3LPaxmHKxFdv7VOQHJ}
+  default-voice-model: ${ELEVENLABS_DEFAULT_MODEL:eleven_multilingual_v2}
+  default-image-model: ${IMAGE_DEFAULT_MODEL:klein}
+  default-clip-model: ${FAL_DEFAULT_MODEL:fal-ai/veo3.1/fast}
+
+spring:
+    datasource:
+      url: ${DB_URL}
+      username: ${DB_USER}
+      password: ${DB_PASSWORD}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        maximum-pool-size: 5
+        minimum-idle: 2
+        connection-timeout: 30000
+
+    jpa:
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          jdbc:
+            batch_size: 25
+          default_schema: public
+          format_sql: false
+      open-in-view: false
+
+    session:
+      store-type: jdbc
+    ai:
+      session:
+        repository:
+          jdbc:
+            initialize-schema: always
+      openai:
+        api-key: ${OPENAI_API_KEY:}
+        base-url: ${OPENAI_BASE_URL}
+        chat:
+          model: ${OPENAI_MODEL:gpt-5.6-luna}
+
+agent:
+  skills-location: ${AGENT_SKILLS_LOCATION:classpath:/skills/}
+
+cors:
+  allowed-origins: ${ALLOWED_ORIGINS}
+
+supabase:
+  url: ${SUPABASE_URL}
+  service-role-key: ${SUPABASE_SERVICE_ROLE_KEY}
+  storage:
+    buckets:
+      user: ${SUPABASE_USER_BUCKET}
+      public: ${SUPABASE_PUBLIC_BUCKET}
+      temp: ${SUPABASE_TEMP_BUCKET}
