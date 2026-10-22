@@ -71,7 +71,7 @@ topic ──▶ script.md + beats.json      the beat grammar: HOOK (frame 0 = th
         <track>/<project>/output/*-sfx.mp4
 ```
 
-Five Claude Code **skills** encode the craft:
+Five Agent **skills** encode the craft:
 
 - **`/make-short`** — the TSX pipeline: hook grammar, no-CTA outros, caption safe areas,
   Sequence-local frame math, loop-into-intro endings.
@@ -96,7 +96,7 @@ in the repo — everything else is stdlib).
 
 ```bash
 git clone https://github.com/tranquility404/VideoFactory.git
-cd claude-faceless-shorts-creator
+cd VideoFactory
 cp .env.example .env          # add your keys
 cd remotion && npm install && npm run gen && cd ..
 
