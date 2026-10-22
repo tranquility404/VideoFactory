@@ -1,4 +1,10 @@
-**A faceless video factory.**
+# **Project Oblivion.**
+This is a just a python version of some tools and skills of my private SaaS. Main project is a multi agent, modular spring boot project with render workers and node services (asset library).
+
+#### Architecture
+<img width="1312" height="2378" alt="mermaid-diagram" src="https://github.com/user-attachments/assets/370d64d8-fbbc-44e8-8cb8-9da05effe876" />
+
+
 Three production tracks in one repo — you just describe the video, and the right pipeline runs:
 
 | You say… | Track | The pixels |
